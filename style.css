@@ -8,10 +8,14 @@ body {
     overflow: auto;
 }
 
-/*Class added to completely lock the page when all content is visible */
-body.no-scroll {
+/* This is the key for stopping scroll on mobile browsers */
+html.no-scroll {
     overflow: hidden;
-    position: fixed; 
+}
+/* This reinforces the lock and prevents body movement */
+html.no-scroll body {
+    overflow: hidden;
+    position: fixed;
     width: 100%;
     top: 0;
     left: 0;
@@ -53,7 +57,7 @@ h1 {
     aspect-ratio: 16 / 12;
     object-fit: cover;
     border-radius: 8px;
-    background-color: #282828; 
+    background-color: #282828; /* Added for placeholders */
 }
 
 .chair-image {
