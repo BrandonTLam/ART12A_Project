@@ -1,7 +1,7 @@
 // This function checks if all grid items are fully visible in the viewport.
 function checkViewportAndToggleScroll() {
     const videoItems = document.querySelectorAll('.video-item');
-    const body = document.body;
+    const html = document.documentElement;
 
     if (videoItems.length === 0) return; // Exit if no items found
 
@@ -24,9 +24,9 @@ function checkViewportAndToggleScroll() {
     // If all items are visible, add the .no-scroll class to lock the page.
     // Otherwise, remove it to allow scrolling.
     if (allItemsVisible) {
-        body.classList.add('no-scroll');
+        html.classList.add('no-scroll');
     } else {
-        body.classList.remove('no-scroll');
+        html.classList.remove('no-scroll');
     }
 }
 
@@ -106,7 +106,7 @@ function checkEndCondition() {
     // If all entries have been viewed...
     if (viewedEntries.size === videoItems.length) {
         endScreen.className = 'modal-visible';
-        document.body.classList.add('no-scroll');
+        document.documentElement.classList.add('no-scroll');
     }
 }
 
