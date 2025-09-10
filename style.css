@@ -4,8 +4,22 @@ body {
     color: #fff;
     font-family: 'Roboto', sans-serif;
     margin: 0;
-    padding: 0 24px;
+    padding: 0;
+    overflow: auto;
+}
+
+/*Class added to completely lock the page when all content is visible */
+body.no-scroll {
     overflow: hidden;
+    position: fixed; 
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+/* Main container to help with height calculations and layout */
+.main-container {
+    padding: 0 24px;
 }
 
 h1 {
@@ -22,6 +36,13 @@ h1 {
     padding: 24px;
 }
 
+/* Media query for large screens */
+@media (min-width: 1248px) and (min-height: 800px) {
+    .video-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
 /* Individual Video Item Styling */
 .video-item {
     cursor: pointer;
@@ -32,7 +53,7 @@ h1 {
     aspect-ratio: 16 / 12;
     object-fit: cover;
     border-radius: 8px;
-    background-color: #282828; /* Added for placeholders */
+    background-color: #282828; 
 }
 
 .chair-image {
