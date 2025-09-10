@@ -1,5 +1,37 @@
-// --- Grid Randomizer ---
-// Shuffles the grid items on page load for a non-linear experience.
+// This function checks if all grid items are fully visible in the viewport.
+function checkViewportAndToggleScroll() {
+    const videoItems = document.querySelectorAll('.video-item');
+    const body = document.body;
+
+    if (videoItems.length === 0) return; // Exit if no items found
+
+    let allItemsVisible = true;
+
+    // Loop through each item to check its position
+    for (const item of videoItems) {
+        const rect = item.getBoundingClientRect();
+        if (
+            rect.top < 0 ||
+            rect.left < 0 ||
+            rect.bottom > (window.innerHeight || document.documentElement.clientHeight) ||
+            rect.right > (window.innerWidth || document.documentElement.clientWidth)
+        ) {
+            allItemsVisible = false; // Found an item outside the viewport
+            break; // No need to check the rest
+        }
+    }
+
+    // If all items are visible, add the .no-scroll class to lock the page.
+    // Otherwise, remove it to allow scrolling.
+    if (allItemsVisible) {
+        body.classList.add('no-scroll');
+    } else {
+        body.classList.remove('no-scroll');
+    }
+}
+
+// --- Grid Randomizer & Initial Setup ---
+// Shuffles the grid on page load and then checks scrolling.
 window.addEventListener('DOMContentLoaded', () => {
     const grid = document.querySelector('.video-grid');
     const items = Array.from(grid.querySelectorAll('.video-item'));
@@ -11,10 +43,16 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     items.forEach(item => grid.appendChild(item));
+
+    // After setup, check if scrolling is needed
+    checkViewportAndToggleScroll();
 });
 
+// Re-check scrolling behavior when the window is resized
+window.addEventListener('resize', checkViewportAndToggleScroll);
+
+
 // --- Journal Content ---
-// This has been updated with your 48-hour strike journal entry.
 const journalData = {
     "1": {
         content: "The first day was difficult. I found myself reaching for my phone during quiet moments, like while eating or before bed. The automatic action showed me how deep the habit was."
@@ -59,19 +97,16 @@ function openModal(entry) {
     modal.className = 'modal-visible';
 }
 
-// MODIFICATION: The end screen check now happens when the modal is closed.
 function closeModal() {
     modal.className = 'modal-hidden';
-    // The check for the end condition is now called HERE.
     checkEndCondition();
 }
 
-// MODIFICATION: The setTimeout is removed for a more immediate feel.
 function checkEndCondition() {
     // If all entries have been viewed...
     if (viewedEntries.size === videoItems.length) {
-        // ...show the end screen immediately after the modal closes.
         endScreen.className = 'modal-visible';
+        document.body.classList.add('no-scroll');
     }
 }
 
@@ -83,12 +118,11 @@ videoItems.forEach(item => {
         if (entry) {
             openModal(entry);
             viewedEntries.add(entryId);
-            // MODIFICATION: The checkEndCondition() call has been REMOVED from this spot.
         }
     });
 });
 
-// Add listeners to close the modal (no changes needed here)
+// Add listeners to close the modal
 closeButton.addEventListener('click', closeModal);
 window.addEventListener('click', (event) => {
     if (event.target === modal) {
