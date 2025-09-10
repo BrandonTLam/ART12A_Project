@@ -58,7 +58,7 @@ const journalData = {
         content: "The first day was difficult. I found myself reaching for my phone during quiet moments, like while eating or before bed. The automatic action showed me how deep the habit was."
     },
     "2": {
-        content: "The initial silence felt strange, and I was restless. Without my usual YouTube videos or short content, the house seemed too quiet, and I had to find ways to fill the time."
+        content: "The initial silence felt strange. Without my usual YouTube videos or short content, the house seemed too quiet."
     },
     "3": {
         content: "To fill this new space, I turned to other activities. I listened to music, went on walks, and read books. I even completed small tasks around my home that I had been putting off for weeks."
@@ -73,7 +73,7 @@ const journalData = {
         content: "The strike proved how much I used it to simply avoid boredom, and it was a good test to understand my own habits better and find new ways to relax."
     },
     "7": {
-        content: "The clock seemed to move slower. I paced around my house, unsure what to do. Every quiet moment was a reminder of the time I now had to fill."
+        content: "The clock seemed to move slower, and I was restless. I paced around my house, unsure what to do. Every quiet moment was a reminder of the time I now had to fill."
     },
     "8": {
         content: "Ultimately, I realized I wasn't missing the content, just the constant distraction. The goal wasn't to stop being entertained, but to reclaim my own attention from the algorithm."
